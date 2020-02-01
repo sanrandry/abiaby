@@ -1,0 +1,33 @@
+<div class="row d-flex justify-content-center">
+  <div class="col-md-4">
+    <nb-card>
+      <nb-card-header>Se connecter</nb-card-header>
+      <nb-card-body>
+        <div>
+          <h4>Commencez à vendre sur Abiaby</h4>
+        </div>
+        <form [formGroup]= "loginForm" (ngSubmit)="login()">
+          <nb-alert status="danger" *ngIf="authenticationError">Email ou mot de passe incorrect</nb-alert>
+          <div class="form-group">
+            <label for="email" class="label">Adresse Email</label>
+            <input required email type="email" nbInput fullWidth id="email" placeholder="Email" formControlName= "email">
+            <p *ngIf="loginForm.controls.password.invalid && (loginForm.controls.password.dirty || loginForm.controls.password.touched)"
+              class="text-danger">le mot de passe est obligatoire</p>
+          </div>
+          <div class="form-group">
+            <label for="password" class="label">Mot de passe</label>
+            <input required type="password" nbInput fullWidth id="password" placeholder="Mot de passe" formControlName="password">
+          </div>
+          <div>
+            <button [disabled]="this.loginForm.invalid" type="submit" nbButton status="success" fullWidth>Connexion</button>
+          </div>
+          <hr>
+          <p class="text-center">Nouveau sur Abiaby ?</p>
+          <div>
+            <button routerLink="/auth/register" type="submit" nbButton status="basic" fullWidth>Créez votre compte Abiaby</button>
+          </div>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

@@ -3,22 +3,24 @@ import { NgModule } from '@angular/core';
 
 import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { IndexComponent } from './index/index.component';
 
-const routes: Routes = [{
-  path: '',
-  component: PagesComponent,
-  children: [
-    {
-      path: 'dashboard',
-      component: DashboardComponent,
-    },
+const routes: Routes = [
     {
       path: '',
-      redirectTo: 'dashboard',
-      pathMatch: 'full',
+      component: PagesComponent,
+      children: [
+        {
+          path: '',
+          component: IndexComponent,
+        },
+      ],
     },
-  ],
-}];
+    {
+      path: 'store',
+      loadChildren: () => import('./store/store.module').then(m => m.StoreModule),
+    },
+  ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

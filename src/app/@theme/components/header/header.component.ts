@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeService } from '@nebular/theme';
 
-import { UserData } from '../../../@core/data/users';
-import { map, takeUntil } from 'rxjs/operators';
+import { map, takeUntil, filter } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { Router } from '@angular/router';
+import { AuthenticationService } from '../../../shared/authetication/authentication.service';
 
 @Component({
   selector: 'ngx-header',
@@ -37,21 +38,19 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   currentTheme = 'default';
 
-  userMenu = [ { title: 'Profile' }, { title: 'Log out' } ];
+  userMenu = [{ title: 'Profil' }, { title: 'Se déconnecter', id: 'logout' } ];
 
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
               private themeService: NbThemeService,
-              private userService: UserData,
-              private breakpointService: NbMediaBreakpointsService) {
+              private breakpointService: NbMediaBreakpointsService,
+              private router: Router,
+              private authenticationService: AuthenticationService,
+              private nbMenuService: NbMenuService) {
   }
 
   ngOnInit() {
     this.currentTheme = this.themeService.currentTheme;
-
-    this.userService.getUsers()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((users: any) => this.user = users.nick);
 
     const { xl } = this.breakpointService.getBreakpointsMap();
     this.themeService.onMediaQueryChange()
@@ -67,11 +66,41 @@ export class HeaderComponent implements OnInit, OnDestroy {
         takeUntil(this.destroy$),
       )
       .subscribe(themeName => this.currentTheme = themeName);
+
+      // get the user data
+      this.getUser();
+
+      // handle the user menu event
+    this.userMenuEventHandler();
   }
 
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();
+  }
+
+  /**
+   * getUser
+   * get the user to authenticatin service
+   */
+  public getUser() {
+    this.user = {
+      name: 'san'
+    };
+  }
+
+  public userMenuEventHandler() {
+    this.nbMenuService.onItemClick()
+      .pipe(
+        filter(({ tag }) => tag === 'userMenu'),
+      )
+      .subscribe((data: any) => {
+        if (data.item.id && data.item.id === 'logout') {
+          this.authenticationService.logout().subscribe((data) => {
+            this.router.navigate(['/auth/login']);
+          });
+        }
+      });
   }
 
   changeTheme(themeName: string) {
@@ -85,7 +114,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   navigateHome() {
-    this.menuService.navigateHome();
-    return false;
+    this.router.navigate(['/' + this.authenticationService.getUserId() + '/dashboard']);
   }
 }

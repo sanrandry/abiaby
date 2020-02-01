@@ -1,0 +1,51 @@
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <nb-card>
+      <nb-card-body>
+        <div class="row">
+          <div class="col-md-12">
+            <h6 class="subtitle text-center">Avant de commencer, veuillez vous assurer que vous avez à portée de main les éléments suivants</h6>
+            <small class="text-center">Nous pouvons demander des informations ou des documents supplémentaires ultérieurement</small>
+            <ul>
+              <li>Adresse professionnelle et de contact</li>
+              <li>Numéro de téléphone ou de portable</li>
+              <li>Carte de crédit ou Autre méthode de payment</li>
+            </ul>
+          </div>
+          <div class="col-md-12">
+            <div class="row justify-content-center">
+              <div class="col-md-10">
+                <form>
+                  <div class="form-group">
+                    <label for="address" class="label">Localisation de l'entreprise</label>
+                    <input required type="text" nbInput fullWidth id="address" placeholder="Localisation de l'entreprise">
+                    <!-- <p *ngIf="loginForm.controls.password.invalid && (loginForm.controls.password.dirty || loginForm.controls.password.touched)"
+                      class="text-danger">le mot de passe est obligatoire</p> -->
+                  </div>
+                  <div class="form-group">
+                    <label for="name" class="label">Nom de l'entreprise</label>
+                    <input required type="text" nbInput fullWidth id="name" placeholder="Nom de l'entreprise">
+                  </div>
+                  <div class="form-group">
+                    <label for="email" class="label">Addresse E-mail</label>
+                    <input required type="email" email nbInput fullWidth id="email" placeholder="Addresse E-mail">
+                  </div>
+                  <div class="form-group">
+                    <label for="phoneNumber" class="label">Téléphone</label>
+                    <input required type="text" nbInput fullWidth id="phoneNumber" placeholder="Téléphone">
+                  </div>
+                  <div>
+                    <small>En cliquant sur "Accepter et continuer", vous acceptez les politiques, accords et avis suivants : <a href="#">condition d'utilsation</a></small>
+                  </div>
+                  <div>
+                    <button type="submit" nbButton status="success" fullWidth>Accepter et continuer</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

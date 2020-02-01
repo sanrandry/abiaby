@@ -39,6 +39,9 @@ import { DEFAULT_THEME } from './styles/theme.default';
 import { COSMIC_THEME } from './styles/theme.cosmic';
 import { CORPORATE_THEME } from './styles/theme.corporate';
 import { DARK_THEME } from './styles/theme.dark';
+import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
+import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
+import { StoreListLayoutComponent } from './layouts/store-list-layout/store-list-layout.component';
 
 const NB_MODULES = [
   NbLayoutModule,
@@ -63,6 +66,9 @@ const COMPONENTS = [
   OneColumnLayoutComponent,
   ThreeColumnsLayoutComponent,
   TwoColumnsLayoutComponent,
+  AuthLayoutComponent,
+  HomeLayoutComponent,
+  StoreListLayoutComponent,
 ];
 const PIPES = [
   CapitalizePipe,
