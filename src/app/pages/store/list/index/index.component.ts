@@ -13,7 +13,7 @@ export class IndexComponent implements OnInit {
   public companyList = [];
 
   constructor(private sellerAccountService: SellerAccountService,
-              private authenticationService: AuthenticationService,
+              public authenticationService: AuthenticationService,
               private router: Router) { }
 
   ngOnInit() {
@@ -28,7 +28,6 @@ export class IndexComponent implements OnInit {
     // get the seler account company list
     this.sellerAccountService.company(this.authenticationService.getUserId()).subscribe((data: any) => {
       // if there is no company, redirect to company creaation page
-      console.log(data);
       if (!data.length) {
         this.router.navigate([`/${this.authenticationService.getUserId()}/store/create`]);
       } else if (data.length === 1) {

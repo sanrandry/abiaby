@@ -5,6 +5,7 @@ import { ListRoutingModule } from './list-routing.module';
 import { ListComponent } from './list.component';
 import { ThemeModule } from '../../../@theme/theme.module';
 import { IndexComponent } from './index/index.component';
+import { NbCardModule } from '@nebular/theme';
 
 @NgModule({
   declarations: [ListComponent, IndexComponent],
@@ -12,6 +13,7 @@ import { IndexComponent } from './index/index.component';
     CommonModule,
     ListRoutingModule,
     ThemeModule,
+    NbCardModule,
   ]
 })
 export class ListModule { }

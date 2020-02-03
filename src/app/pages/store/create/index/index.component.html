@@ -15,24 +15,34 @@
           <div class="col-md-12">
             <div class="row justify-content-center">
               <div class="col-md-10">
-                <form>
+                <form [formGroup]="companyForm" (ngSubmit)="createCompany()">
                   <div class="form-group">
                     <label for="address" class="label">Localisation de l'entreprise</label>
-                    <input required type="text" nbInput fullWidth id="address" placeholder="Localisation de l'entreprise">
-                    <!-- <p *ngIf="loginForm.controls.password.invalid && (loginForm.controls.password.dirty || loginForm.controls.password.touched)"
-                      class="text-danger">le mot de passe est obligatoire</p> -->
+                    <input formControlName="address" required type="text" nbInput fullWidth id="address" placeholder="Localisation de l'entreprise">
+                    <p *ngIf="companyForm.controls.address.invalid && (companyForm.controls.address.dirty || companyForm.controls.address.touched)"
+                      class="text-danger">la localisation de l'entreprise est obligatoire</p>
                   </div>
                   <div class="form-group">
                     <label for="name" class="label">Nom de l'entreprise</label>
-                    <input required type="text" nbInput fullWidth id="name" placeholder="Nom de l'entreprise">
+                    <input formControlName="name"  type="text" nbInput fullWidth id="name" placeholder="Nom de l'entreprise">
+                    <p *ngIf="companyForm.controls.name.invalid && (companyForm.controls.name.dirty || companyForm.controls.name.touched)"
+                      class="text-danger">le nom est obligatoire</p>
                   </div>
                   <div class="form-group">
                     <label for="email" class="label">Addresse E-mail</label>
-                    <input required type="email" email nbInput fullWidth id="email" placeholder="Addresse E-mail">
+                    <input formControlName="email" required type="email" email nbInput fullWidth id="email" placeholder="Addresse E-mail">
+                    <div *ngIf="companyForm.controls.email.invalid">
+                      <p *ngIf="companyForm.controls.email.errors.required && (companyForm.controls.email.dirty || companyForm.controls.email.touched)"
+                        class="text-danger">L'addresse E-mail est obligatoire</p>
+                      <p *ngIf="companyForm.controls.email.errors.email && (companyForm.controls.email.dirty || companyForm.controls.email.touched)"
+                        class="text-danger">L'addresse E-mail est invalide</p>
+                    </div>
                   </div>
                   <div class="form-group">
                     <label for="phoneNumber" class="label">Téléphone</label>
-                    <input required type="text" nbInput fullWidth id="phoneNumber" placeholder="Téléphone">
+                    <input formControlName="phoneNumber" required type="text" nbInput fullWidth id="phoneNumber" placeholder="Téléphone">
+                    <p *ngIf="companyForm.controls.phoneNumber.invalid && (companyForm.controls.phoneNumber.dirty || companyForm.controls.phoneNumber.touched)"
+                      class="text-danger">Le téléphone E-mail est obligatoire</p>
                   </div>
                   <div>
                     <small>En cliquant sur "Accepter et continuer", vous acceptez les politiques, accords et avis suivants : <a href="#">condition d'utilsation</a></small>

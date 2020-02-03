@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { StoreComponent } from './store.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,12 @@ const routes: Routes = [
   {
     path: ':companyId',
     component: StoreComponent,
+    children: [
+      {
+        path: '',
+        component: DashboardComponent,
+      }
+    ]
   },
 ];
 

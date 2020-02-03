@@ -5,9 +5,10 @@ import { StoreRoutingModule } from './store-routing.module';
 import { ThemeModule } from '../../@theme/theme.module';
 import { StoreComponent } from './store.component';
 import { NbMenuModule } from '@nebular/theme';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
-  declarations: [StoreComponent],
+  declarations: [StoreComponent, DashboardComponent],
   imports: [
     CommonModule,
     StoreRoutingModule,

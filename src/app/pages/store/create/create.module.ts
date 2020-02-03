@@ -6,7 +6,7 @@ import { CreateComponent } from './create.component';
 import { ThemeModule } from '../../../@theme/theme.module';
 import { IndexComponent } from './index/index.component';
 import { NbCardModule, NbInputModule, NbButtonModule } from '@nebular/theme';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [CreateComponent, IndexComponent],
@@ -16,6 +16,7 @@ import { FormsModule } from '@angular/forms';
     ThemeModule,
     NbCardModule,
     FormsModule,
+    ReactiveFormsModule,
     NbInputModule,
     NbButtonModule,
   ],
