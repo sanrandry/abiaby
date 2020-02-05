@@ -1,0 +1,59 @@
+<div class="col-md-12 mb-3">
+  <div class="row">
+    <div class="col-md">
+      Produits
+    </div>
+    <div class="col-md">
+      <button class="float-right" nbButton [routerLink]="this.router.url + '/create'">Créer un produit</button>
+    </div>
+  </div>
+</div>
+<div class="col-md-12">
+  <nb-card>
+    <nb-card-header>Tous les produits</nb-card-header>
+    <nb-card-body>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th style="width: 60px;"></th>
+            <th scope="col">Nom</th>
+            <th scope="col">Prix</th>
+            <th scope="col">Inventaire</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>
+              <div>
+                <img src="/assets/images/vw-bulli-3583964_1920.png" class="img-fluid" alt="" width="30px;">
+              </div>
+            </th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th>
+              <div>
+                <img src="/assets/images/vw-bulli-3583964_1920.png" class="img-fluid" alt="" width="30px;">
+              </div>
+            </th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th>
+              <div>
+                <img src="/assets/images/vw-bulli-3583964_1920.png" class="img-fluid" alt="" width="30px;">
+              </div>
+            </th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+        </tbody>
+      </table>
+    </nb-card-body>
+  </nb-card>
+</div>

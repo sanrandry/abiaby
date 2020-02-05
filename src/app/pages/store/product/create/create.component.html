@@ -1,0 +1,101 @@
+<div class="col-md-12 mb-3">
+  <h5>Nouveau produit</h5>
+</div>
+
+<div class="col-md-12">
+  <div class="row">
+    <div class="col-md-8">
+      <nb-card>
+        <nb-card-header>Informations générales</nb-card-header>
+        <nb-card-body>
+          <form>
+            <div class="form-group">
+              <label for="phoneNumber" class="label">Nom du produit</label>
+              <input formControlName="" required type="text" nbInput fullWidth id="phoneNumber" placeholder="Nom">
+              <!-- <p *ngIf="companyForm.controls.phoneNumber.invalid && (companyForm.controls.phoneNumber.dirty || companyForm.controls.phoneNumber.touched)"
+                class="text-danger">Le téléphone E-mail est obligatoire</p> -->
+            </div>
+            <div class="form-group">
+              <label for="phoneNumber" class="label">Description</label>
+              <textarea formControlName="" required type="text" nbInput fullWidth id="phoneNumber" placeholder="Description"></textarea>
+              <!-- <p *ngIf="companyForm.controls.phoneNumber.invalid && (companyForm.controls.phoneNumber.dirty || companyForm.controls.phoneNumber.touched)"
+                            class="text-danger">Le téléphone E-mail est obligatoire</p> -->
+            </div>
+          </form>
+        </nb-card-body>
+      </nb-card>
+      <nb-card>
+        <nb-card-header>Photos</nb-card-header>
+        <nb-card-body>
+          <div class="row">
+            <div class="col-md-3">
+              <img src="/assets/images/vw-bulli-3583964_1920.png" class="img-fluid" alt="">
+            </div>
+          </div>
+        </nb-card-body>
+      </nb-card>
+      <nb-card>
+        <nb-card-header>Prix</nb-card-header>
+        <nb-card-body>
+          <form>
+            <div class="form-group">
+              <label for="phoneNumber" class="label">Prix</label>
+              <input formControlName="" required type="number" nbInput fullWidth id="phoneNumber" placeholder="Prix">
+              <!-- <p *ngIf="companyForm.controls.phoneNumber.invalid && (companyForm.controls.phoneNumber.dirty || companyForm.controls.phoneNumber.touched)"
+                class="text-danger">Le téléphone E-mail est obligatoire</p> -->
+            </div>
+          </form>
+        </nb-card-body>
+      </nb-card>
+      <nb-card>
+        <nb-card-header>Inventaire</nb-card-header>
+        <nb-card-body>
+          <form>
+            <div class="row">
+              <div class="col-md">
+                <div class="form-group">
+                  <label for="phoneNumber" class="label">Unité de gestion des stocks</label>
+                  <input formControlName="" required type="text" nbInput fullWidth id="phoneNumber" placeholder="example Kg">
+                  <!-- <p *ngIf="companyForm.controls.phoneNumber.invalid && (companyForm.controls.phoneNumber.dirty || companyForm.controls.phoneNumber.touched)"
+                                      class="text-danger">Le téléphone E-mail est obligatoire</p> -->
+                </div>
+              </div>
+              <div class="col-md">
+                <div class="form-group">
+                  <label for="phoneNumber" class="label">Iventaire</label>
+                  <input formControlName="" required type="number" nbInput fullWidth id="phoneNumber" placeholder="Iventaire">
+                  <!-- <p *ngIf="companyForm.controls.phoneNumber.invalid && (companyForm.controls.phoneNumber.dirty || companyForm.controls.phoneNumber.touched)"
+                                      class="text-danger">Le téléphone E-mail est obligatoire</p> -->
+                </div>
+              </div>
+            </div>
+          </form>
+        </nb-card-body>
+      </nb-card>
+    </div>
+    <div class="col-md-4">
+      <nb-card>
+        <nb-card-header>Organiser le produit</nb-card-header>
+        <nb-card-body>
+          <form>
+            <div class="form-group">
+              <label for="phoneNumber" class="label">Categorie</label>
+              <div class="row">
+                <nb-select class="col-md" placeholder="Catetorie">
+                  <nb-option value="">Option empty</nb-option>
+                  <nb-option value="0">Categorie 0</nb-option>
+                  <nb-option value="1">Categorie 1</nb-option>
+                  <nb-option value="2">Categorie 2</nb-option>
+                  <nb-option value="3">Categorie 3</nb-option>
+                  <nb-option value="4">Categorie 4</nb-option>
+                </nb-select>
+                <!-- <p *ngIf="companyForm.controls.phoneNumber.invalid && (companyForm.controls.phoneNumber.dirty || companyForm.controls.phoneNumber.touched)"
+                                                          class="text-danger">Le téléphone E-mail est obligatoire</p> -->
+              </div>
+            </div>
+          </form>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>
+</div>

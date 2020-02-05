@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { StoreComponent } from './store.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { map } from 'rxjs/operators';
 
 const routes: Routes = [
   {
@@ -19,13 +20,17 @@ const routes: Routes = [
       {
         path: '',
         component: DashboardComponent,
-      }
-    ]
+      },
+      {
+        path: 'product',
+        loadChildren: () => import('./product/product.module').then( m => m.ProductModule),
+      },
+    ],
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class StoreRoutingModule { }

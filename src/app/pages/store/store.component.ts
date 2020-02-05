@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { PageMenuService } from '../page-menu.service';
+import { AuthenticationService } from '../../shared/authetication/authentication.service';
+import { NbMenuItem } from '@nebular/theme';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'store',
@@ -12,11 +14,62 @@ import { PageMenuService } from '../page-menu.service';
   styles: []
 })
 export class StoreComponent implements OnInit {
+  private storeId;
 
-  constructor(private pageMenuService: PageMenuService) { }
-  menu = this.pageMenuService.MENU_ITEMS;
+  public menu: NbMenuItem[];
+
+  constructor(private authenticationService: AuthenticationService,
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.getStoreId();
+  }
+
+  private getStoreId() {
+    this.route.paramMap.subscribe((params) => {
+      this.storeId = params.get('companyId');
+      this.menu = this.getMenu();
+    });
+  }
+
+  private getMenu(): NbMenuItem[] {
+    return [
+      {
+        title: 'Accueil',
+        icon: 'home-outline',
+        link: `/${this.authenticationService.getUserId()}/store/${this.storeId}/`,
+        home: true,
+      },
+      {
+        title: 'Boutique',
+        icon: 'shopping-cart-outline',
+        expanded: true,
+        children: [
+          {
+            title: 'Produits',
+            link: `/${this.authenticationService.getUserId()}/store/${this.storeId}/product`,
+          },
+          {
+            title: 'Catégories',
+            link: '',
+          },
+          {
+            title: 'Commandes',
+            link: '',
+          },
+          {
+            title: 'Clients',
+            link: '',
+          },
+        ],
+      },
+      {
+        title: 'Cofiguration',
+        icon: 'settings-2-outline',
+        link: `/${this.authenticationService.getUserId()}/dashboard`,
+        home: true,
+      },
+    ];
   }
 
 }
