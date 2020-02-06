@@ -3,8 +3,9 @@ import { CommonModule } from '@angular/common';
 
 import { ProductRoutingModule } from './product-routing.module';
 import { ListComponent } from './list/list.component';
-import { NbCardModule, NbButtonModule, NbInputModule, NbSelectModule } from '@nebular/theme';
+import { NbCardModule, NbButtonModule, NbInputModule, NbSelectModule, NbLayoutModule } from '@nebular/theme';
 import { CreateComponent } from './create/create.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [ListComponent, CreateComponent],
@@ -15,6 +16,9 @@ import { CreateComponent } from './create/create.component';
     NbButtonModule,
     NbInputModule,
     NbSelectModule,
+    NbLayoutModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
 })
 export class ProductModule { }

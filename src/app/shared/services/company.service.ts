@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Company } from '../models/company';
+import { Product } from '../models/product';
 
 @Injectable({
   providedIn: 'root',
@@ -31,5 +32,30 @@ export class CompanyService {
 
   public exist(id) {
     this.http.get<any>('/companies/' + id + '/exists');
+  }
+
+  /**
+   * newProduct()
+   * create a new product for a company
+   *
+   * @param {*} companyId
+   * @param {Product} data
+   * @returns Observable <any>
+   * @memberof CompanyService
+   */
+  public newProduct(companyId, data: Product) {
+    return this.http.post('/companies/' + companyId + '/products', data);
+  }
+
+  /**
+   * productList()
+   * get the product list for this company
+   *
+   * @param {string} companyId
+   * @returns
+   * @memberof CompanyService
+   */
+  public productList(companyId) {
+    return this.http.get('/companies/' + companyId + '/products');
   }
 }

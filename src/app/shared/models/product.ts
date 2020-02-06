@@ -4,6 +4,8 @@ export interface Product {
     price: number;
     taxe?: number;
     discount?: number;
+    SKU?: string;
+    inventory: number;
     id?: string;
     companyId?: string;
     categoryId?: string;
