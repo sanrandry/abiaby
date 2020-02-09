@@ -20,7 +20,10 @@ export class ListComponent implements OnInit {
   }
 
   public getProductList() {
-    this.companyService.productList(this.route.parent.parent.snapshot.paramMap.get('companyId')).subscribe((data: any) => {
+    const filter = {
+      include: 'productImages',
+    };
+    this.companyService.productList(this.route.parent.parent.snapshot.paramMap.get('companyId'), filter).subscribe((data: any) => {
       this.productList = data;
       console.log(data);
     }, (error) => {

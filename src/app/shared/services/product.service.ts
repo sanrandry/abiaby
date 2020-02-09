@@ -32,4 +32,8 @@ export class ProductService {
   public exist(id) {
     this.http.get<any>('/products/' + id + '/exists');
   }
+
+  public newImage(productId, data) {
+    return this.http.post('/products/' + productId + '/productImages', data);
+  }
 }

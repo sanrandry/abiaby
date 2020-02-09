@@ -55,7 +55,7 @@ export class CompanyService {
    * @returns
    * @memberof CompanyService
    */
-  public productList(companyId) {
-    return this.http.get('/companies/' + companyId + '/products');
+  public productList(companyId, filter = {}) {
+    return this.http.get('/companies/' + companyId + '/products?filter=' + encodeURI(JSON.stringify(filter)));
   }
 }
