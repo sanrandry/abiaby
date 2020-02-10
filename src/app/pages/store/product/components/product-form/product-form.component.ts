@@ -13,7 +13,9 @@ import { Product } from '../../../../../shared/models/product';
 export class ProductFormComponent implements OnInit {
 
   @Input()
-  public edit = false;
+  public edit: boolean = false;
+  public sellerAccountId;
+  public companyId;
   public productForm = this.fb.group({
     name: ['', Validators.required],
     description: ['', Validators.required],
@@ -33,6 +35,10 @@ export class ProductFormComponent implements OnInit {
     private productService: ProductService) { }
 
   ngOnInit() {
+    // get seller  id
+    this.sellerAccountId = this.route.parent.parent.snapshot.paramMap.get('userId');
+    // get companyId
+    this.companyId = this.route.parent.parent.snapshot.paramMap.get('companyId');
   }
 
   /**
@@ -101,8 +107,16 @@ export class ProductFormComponent implements OnInit {
     }
   }
 
-  public openFileInput() {
 
+public deleteProduct() {
+  if (this.edit) {
+    this.companyService.deleteProduct(this.companyId, this.route.snapshot.paramMap.get('productId'))
+        .subscribe((data) => {
+          this.router.navigate(['/' + this.sellerAccountId + '/store/' + this.companyId + '/product']);
+        }, (error) => {
+          console.log(error);
+        })
   }
+}
 
 }

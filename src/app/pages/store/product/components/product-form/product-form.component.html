@@ -105,7 +105,11 @@
   <div class="col-md-12">
     <nb-card>
       <nb-card-body>
-        <button [disabled]="productForm.invalid" nbButton class="float-right" type="submit">Créer</button>
+        <button *ngIf="edit" nbButton status="danger" (click)="deleteProduct()">Effacer</button>
+        <div class="float-right">
+          <button status="basic" class="mr-3" nbButton [routerLink]="['/' + sellerAccountId + '/store/' + companyId + '/product']">Annuler</button>
+          <button [disabled]="productForm.invalid" nbButton type="submit">Sauvegarder</button>
+        </div>
       </nb-card-body>
     </nb-card>
   </div>

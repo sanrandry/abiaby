@@ -33,7 +33,28 @@ export class ProductService {
     this.http.get<any>('/products/' + id + '/exists');
   }
 
+  /**
+   * newImage()
+   * add an related image to this product
+   *
+   * @param {string} productId
+   * @param {object} data
+   * @returns Observable
+   * @memberof ProductService
+   */
   public newImage(productId, data) {
     return this.http.post('/products/' + productId + '/productImages', data);
+  }
+
+  /**
+   * deleteAllImage()
+   * delete all related image for this product
+   *
+   * @param {string} productId
+   * @returns Observable<any>
+   * @memberof ProductService
+   */
+  public deleteAllImage(productId) {
+    return this.http.delete('/products/' + productId + '/productImages');
   }
 }

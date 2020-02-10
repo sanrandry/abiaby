@@ -22,7 +22,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of productList">
+          <tr *ngFor="let item of productList" [routerLink]="[router.url + '/' + item.id + '/edit' ]" style="cursor: pointer;">
             <td>
               <div>
                 <img [src]="item.productImages.length ? item.productImages[0].blob : '/assets/images/vw-bulli-3583964_1920.png'" class="img-fluid" alt="" width="30px;">

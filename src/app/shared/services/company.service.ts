@@ -2,13 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Company } from '../models/company';
 import { Product } from '../models/product';
+import { ProductService } from './product.service';
+import { switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CompanyService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private productService: ProductService) { }
 
   public create(data: Company) {
     return this.http.post('/companies', data);
@@ -57,5 +59,21 @@ export class CompanyService {
    */
   public productList(companyId, filter = {}) {
     return this.http.get('/companies/' + companyId + '/products?filter=' + encodeURI(JSON.stringify(filter)));
+  }
+
+  /**
+   * deleteProduct()
+   * delete related product for this company
+   * @param {string} companyId
+   * @param {string} productId
+   * @returns Ob
+   * @memberof CompanyService
+   */
+  public deleteProduct(companyId, productId) {
+    return this.productService.deleteAllImage(productId).pipe(
+      switchMap((deletedImages) => {
+        return this.http.delete('/companies/' + companyId + '/products/' + productId);
+      }),
+    );
   }
 }
