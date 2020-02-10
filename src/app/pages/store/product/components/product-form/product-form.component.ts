@@ -16,15 +16,7 @@ export class ProductFormComponent implements OnInit {
   public edit: boolean = false;
   public sellerAccountId;
   public companyId;
-  public productForm = this.fb.group({
-    name: ['', Validators.required],
-    description: ['', Validators.required],
-    coverImage: ['', Validators.required],
-    price: ['', Validators.required],
-    SKU: [''],
-    inventory: ['', Validators.required],
-    category: [''],
-  });
+  public productForm;
 
   public coverImageUrl;
 
@@ -39,6 +31,52 @@ export class ProductFormComponent implements OnInit {
     this.sellerAccountId = this.route.parent.parent.snapshot.paramMap.get('userId');
     // get companyId
     this.companyId = this.route.parent.parent.snapshot.paramMap.get('companyId');
+    // initialize the product form
+    this.initializeForm();
+  }
+
+  /**
+   * initializeForm()
+   * create productForm with form builder and initialize the form data if we are in edit mode
+   *
+   * @memberof ProductFormComponent
+   */
+  initializeForm () {
+    // unchage data
+      const form: any = {
+        name: ['', Validators.required],
+        description: ['', Validators.required],
+        price: ['', Validators.required],
+        SKU: [''],
+        inventory: ['', Validators.required],
+        category: [''],
+    };
+    // this dada depend on the edit status
+    if (this.edit) {
+      form.coverImage = [''];
+    } else {
+      form.coverImage = ['', Validators.required];
+    }
+
+    this.productForm = this.fb.group(form);
+
+    // initiliaze form data
+    if (this.edit) {
+      // get the product id to the activated route
+      const productId = this.route.snapshot.paramMap.get('productId');
+      // fetch the current product
+      const filter = {
+        include: 'productImages',
+      };
+      this.productService.get(productId, filter).subscribe((currentProduct: any) => {
+        this.productForm.controls.name.setValue(currentProduct.name);
+        this.productForm.controls.description.setValue(currentProduct.description);
+        this.productForm.controls.price.setValue(currentProduct.price);
+        this.productForm.controls.SKU.setValue(currentProduct.SKU);
+        this.productForm.controls.inventory.setValue(currentProduct.inventory);
+        this.coverImageUrl = currentProduct.productImages[0].blob;
+      });
+    }
   }
 
   /**
@@ -107,16 +145,55 @@ export class ProductFormComponent implements OnInit {
     }
   }
 
-
-public deleteProduct() {
-  if (this.edit) {
-    this.companyService.deleteProduct(this.companyId, this.route.snapshot.paramMap.get('productId'))
-        .subscribe((data) => {
-          this.router.navigate(['/' + this.sellerAccountId + '/store/' + this.companyId + '/product']);
-        }, (error) => {
-          console.log(error);
-        })
+  public updateProduct() {
+    // form validation
+    if (this.productForm.valid) {
+      // data to post
+      let data: Product = {
+        name: this.productForm.value.name,
+        description: this.productForm.value.description,
+        price: this.productForm.value.price,
+        SKU: this.productForm.value.SKU,
+        inventory: this.productForm.value.inventory,
+      };
+      this.companyService.updateProduct(this.route.parent.parent.snapshot.paramMap.get('companyId'),
+                                      this.route.snapshot.paramMap.get('productId'),
+                                      data).subscribe((result: any) => {
+        // upload the product image if the input was changed
+        if (this.productForm.value.coverImage) {
+          // this.productService.newImage(result.id, {
+          //   blob: this.coverImageUrl,
+          // }).subscribe(() => { }, (error) => {
+          //   console.log(error);
+          // });
+        }
+        // redirect to the company product list page
+        // tslint:disable-next-line: max-line-length
+        this.router.navigate([`/${this.route.parent.parent.snapshot.paramMap.get('userId')}/store/${this.route.parent.parent.snapshot.paramMap.get('companyId')}/product`]);
+      }, (error) => {
+        console.log(error);
+      });
+    }
   }
-}
+
+  onSubmit() {
+    if (!this.edit) {
+      this.createProduct();
+    } else {
+      this.updateProduct();
+    }
+  }
+
+
+  public deleteProduct() {
+    if (this.edit) {
+      this.companyService.deleteProduct(this.companyId, this.route.snapshot.paramMap.get('productId'))
+          .subscribe((data) => {
+            this.router.navigate(['/' + this.sellerAccountId + '/store/' + this.companyId + '/product']);
+          }, (error) => {
+            console.log(error);
+          });
+    }
+  }
 
 }

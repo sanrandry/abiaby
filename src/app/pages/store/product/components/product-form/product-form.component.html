@@ -1,4 +1,4 @@
-<form [formGroup]="productForm" (ngSubmit)="createProduct()">
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
   <div class="col-md-12 mb-3">
     <h5>Nouveau produit</h5>
   </div>
@@ -27,9 +27,9 @@
         <nb-card>
           <nb-card-header>
             Photos
-            <button class="float-right" (click)="image.click()" nbButton>Upload image</button>
-            <input hidden (change)="getCoverIMage($event)" type="file" required formControlName="coverImage"
-              name="image" #image id="image">
+            <button type="button" class="float-right" (click)="image.click()" nbButton>Upload image</button>
+            <input hidden (change)="getCoverIMage($event)" type="file" formControlName="coverImage"
+              #image id="image">
           </nb-card-header>
           <nb-card-body>
             <div class="row">
@@ -105,9 +105,9 @@
   <div class="col-md-12">
     <nb-card>
       <nb-card-body>
-        <button *ngIf="edit" nbButton status="danger" (click)="deleteProduct()">Effacer</button>
+        <button type="button" *ngIf="edit" nbButton status="danger" (click)="deleteProduct()">Effacer</button>
         <div class="float-right">
-          <button status="basic" class="mr-3" nbButton [routerLink]="['/' + sellerAccountId + '/store/' + companyId + '/product']">Annuler</button>
+          <button type="button" status="basic" class="mr-3" nbButton [routerLink]="['/' + sellerAccountId + '/store/' + companyId + '/product']">Annuler</button>
           <button [disabled]="productForm.invalid" nbButton type="submit">Sauvegarder</button>
         </div>
       </nb-card-body>

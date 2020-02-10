@@ -76,4 +76,18 @@ export class CompanyService {
       }),
     );
   }
+
+  /**
+   * updateProduct()
+   * update a product linked by this company
+   *
+   * @param {string} companyId
+   * @param {string} productId
+   * @param {Product} data
+   * @returns Observable <any>
+   * @memberof CompanyService
+   */
+  public updateProduct(companyId, productId, data: Product) {
+    return this.http.put('/companies/' + companyId + '/products/' + productId, data);
+  }
 }
