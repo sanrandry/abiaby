@@ -5,6 +5,7 @@ import { map, takeUntil, filter } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../../shared/authetication/authentication.service';
+import { SellerAccountService } from '../../../shared/services/seller-account.service';
 
 @Component({
   selector: 'ngx-header',
@@ -38,7 +39,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   currentTheme = 'default';
 
-  userMenu = [{ title: 'Profil' }, { title: 'Se déconnecter', id: 'logout' } ];
+  userMenu = [{ title: 'Profil', id: 'profile' }, { title: 'Se déconnecter', id: 'logout' } ];
 
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
@@ -46,7 +47,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
               private breakpointService: NbMediaBreakpointsService,
               private router: Router,
               private authenticationService: AuthenticationService,
-              private nbMenuService: NbMenuService) {
+              private nbMenuService: NbMenuService,
+              private sellerAccountService: SellerAccountService) {
   }
 
   ngOnInit() {
@@ -81,24 +83,33 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   /**
    * getUser
-   * get the user to authenticatin service
+   * get the user to authentication service
    */
   public getUser() {
-    this.user = {
-      name: 'san'
-    };
+    this.sellerAccountService.get(this.authenticationService.getUserId()).subscribe((data) => {
+      this.user = data;
+    });
   }
 
+  /**
+   * userMenyEventHandler()
+   * handle the user dropdown menu event
+   *
+   * @memberof HeaderComponent
+   */
   public userMenuEventHandler() {
     this.nbMenuService.onItemClick()
       .pipe(
         filter(({ tag }) => tag === 'userMenu'),
       )
       .subscribe((data: any) => {
+        // logout function
         if (data.item.id && data.item.id === 'logout') {
-          this.authenticationService.logout().subscribe((data) => {
+          this.authenticationService.logout().subscribe(() => {
             this.router.navigate(['/auth/login']);
           });
+        } else if (data.item.id && data.item.id === 'profile') { // redirect to profile page
+          this.router.navigate(['/' + this.authenticationService.getUserId() + '/profile']);
         }
       });
   }

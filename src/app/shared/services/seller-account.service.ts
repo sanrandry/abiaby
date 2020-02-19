@@ -53,4 +53,21 @@ export class SellerAccountService {
     return this.http.get('/sellerAccounts/' + id + '/companies');
   }
 
+  /**
+   * changePassword(oldPassword, newPassword)
+   * change the loged seller account password
+   *
+   * @param {string} oldPassword
+   * @param {string} newPassword
+   * @returns Observable<any>
+   * @memberof SellerAccountService
+   */
+  public changePassword(oldPassword: string, newPassword: string) {
+    const data: any = {
+      oldPassword: oldPassword,
+      newPassword: newPassword,
+    };
+    return this.http.post('/sellerAccounts/change-password', data);
+  }
+
 }

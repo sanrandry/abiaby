@@ -4,8 +4,9 @@ import { Component } from '@angular/core';
   selector: 'ngx-footer',
   styleUrls: ['./footer.component.scss'],
   template: `
-    <span class="created-by">Created with ♥ by <b><a href="http://www.asaunivers.mg/" target="_blank">ASA</a></b> 2019</span>
+    <span class="created-by">Created with ♥ by <b><a href="http://www.iasa.mg/" target="_blank">ASA</a></b> {{year}}</span>
   `,
 })
 export class FooterComponent {
+  public year = new Date().getFullYear();
 }

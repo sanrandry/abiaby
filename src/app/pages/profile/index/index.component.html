@@ -1,0 +1,96 @@
+<form [formGroup]="profileForm">
+<div class="col-md-12">
+  <div class="row justify-content-center">
+    <div class="col-md-7">
+      <nb-card>
+        <nb-card-header>
+          <div class="row">
+            <div class="col-md">
+              <h5>Votre profil</h5>
+            </div>
+            <div class="col-md">
+              <button class="float-right" nbButton [routerLink]="">Modifier</button>
+            </div>
+          </div>
+        </nb-card-header>
+        <nb-card-body>
+          <div class="row">
+            <div class="col-md">
+              <p>
+                <span class="subtitle">Nom: </span>{{profile.name}}
+              </p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md">
+              <p>
+                <span class="subtitle">E-mail: </span>{{profile.email}}
+              </p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md">
+              <div>
+                <span class="subtitle">Mot de passe: </span> <button (click)="showProfilForm = ! showProfilForm" nbButton size="tiny">Changer le mot de passe</button>
+                <div *ngIf="showProfilForm" class="row justify-content-center mt-2">
+                  <div class="col-md-7">
+                    <form [formGroup]="profileForm" (ngSubmit)="submitProfileForm()">
+                      <div class="form-group">
+                        <label for="oldPassword" class="label">Ancien mot de passe</label>
+                        <input formControlName="oldPassword" required type="password" nbInput fullWidth id="oldPassword" placeholder="">
+                        <p *ngIf="profileForm.controls.oldPassword.invalid && (profileForm.controls.oldPassword.dirty || profileForm.controls.oldPassword.touched)"
+                          class="text-danger">Le champ Ancien mot de passe est obligatoire</p>
+                        <p *ngIf="!profileForm.controls.oldPassword.invalid && profileFormIvalidPasswordError "
+                          class="text-danger">Mot de passe incorrect</p>
+                      </div>
+                      <div class="form-group">
+                        <label for="newPassword" class="label">Nouveau mot de passe</label>
+                        <input formControlName="newPassword" required type="password" nbInput fullWidth id="newPassword" placeholder="">
+                        <p *ngIf="profileForm.controls.newPassword.invalid && (profileForm.controls.newPassword.dirty || profileForm.controls.newPassword.touched)"
+                          class="text-danger">Le champ nouveau mot de passe est obligatoire</p>
+                      </div>
+                      <div class="form-group">
+                        <label for="confirmPassword" class="label">Cofirmation du mot de passe</label>
+                        <input formControlName="confirmPassword" required type="password" nbInput fullWidth id="confirmPassword" placeholder="">
+                        <p *ngIf="profileForm.controls.confirmPassword.invalid && (profileForm.controls.confirmPassword.dirty || profileForm.controls.confirmPassword.touched)"
+                          class="text-danger">Le confirmation du mot de passe est obligatoire</p>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="float-right">
+                            <button [disabled]="profileForm.invalid" class="mr-2" nbButton type="submit" size="tiny">Modifer</button>
+                            <button type="button" status="basic" nbButton size="tiny" (click)="showProfilForm = false">Annuler</button>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- password form -->
+          <hr>
+          <div class="row mb-3">
+            <div class="col-md">
+              <h5>Votre Boutiques</h5>
+            </div>
+            <div class="col-md">
+              <button class="float-right" nbButton routerLink="/{{profile.id}}/store/create">Créer</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md">
+              <nb-list>
+                <nb-list-item style="cursor: pointer;" *ngFor="let item of profile.companies" routerLink="/{{profile.id}}/store/{{item.id}}">
+                  {{item.name}}
+                </nb-list-item>
+              </nb-list>
+            </div>
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>
+</div>
+</form>
