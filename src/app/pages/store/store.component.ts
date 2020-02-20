@@ -31,7 +31,10 @@ export class StoreComponent implements OnInit {
       this.menu = this.getMenu();
     });
   }
-
+  /**
+   * getMenu()
+   * return the store menu item list
+   */
   private getMenu(): NbMenuItem[] {
     return [
       {
@@ -66,7 +69,7 @@ export class StoreComponent implements OnInit {
       {
         title: 'Cofiguration',
         icon: 'settings-2-outline',
-        link: `/${this.authenticationService.getUserId()}/dashboard`,
+        link: `/${this.authenticationService.getUserId()}/store/${this.storeId}/configuration`,
         home: true,
       },
     ];

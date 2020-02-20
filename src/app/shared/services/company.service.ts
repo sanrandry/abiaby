@@ -90,4 +90,30 @@ export class CompanyService {
   public updateProduct(companyId, productId, data: Product) {
     return this.http.put('/companies/' + companyId + '/products/' + productId, data);
   }
+
+/**
+ * newCompanyImage(companyId, data)
+ * create a company image
+ *
+ * @param {string} companyId
+ * @param {object} data
+ * @returns Observable<any>
+ * @memberof CompanyService
+ */
+  public newCompanyImage(companyId, data) {
+    return this.http.post(`/companies/${companyId}/companyImages`, data);
+  }
+
+  /**
+   * updateCompanyIMage(companyId, data)
+   * update a company image
+   *
+   * @param {string} companyId
+   * @param {object} data
+   * @returns Observable<any>
+   * @memberof CompanyService
+   */
+  public updateCompanyImage(companyId, data) {
+    return this.http.put(`/companies/${companyId}/companyImages`, data);
+  }
 }

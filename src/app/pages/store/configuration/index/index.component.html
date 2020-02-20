@@ -1,0 +1,59 @@
+<div class="col-md-12 mb-3">
+  <div class="row">
+    <div class="col-md">
+      <h5>Cofigurations</h5>
+    </div>
+  </div>
+  <hr class="mt-0">
+</div>
+<div class="col-md-12">
+  <!-- Paramètres du personnel -->
+  <div class="row">
+    <div class="col-md-4">
+      <span class="subtitle">
+        Paramètres du personnel
+      </span>
+    </div>
+    <div class="col-md-4">
+      <nb-card>
+        <nb-card-body>
+          <div class="row">
+            <div class="col-md-4 text-center">
+              <nb-icon icon="settings-2-outline" style="font-size: 5rem;"></nb-icon>
+            </div>
+            <div class="col-md-8">
+              <span class="h6">Memebres du presonnel</span>
+              <p>Gérer vos employés et leurs autorisations</p>
+            </div>
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>
+  <!-- //Paramètres du personnel -->
+  <hr>
+  <!-- divers -->
+  <div class="row">
+    <div class="col-md-4">
+      <span class="subtitle">
+        Divers
+      </span>
+    </div>
+    <div class="col-md-4">
+      <nb-card style="cursor: pointer;" [routerLink]="['/' + userId + '/store/' + companyId + '/edit']">
+        <nb-card-body>
+          <div class="row">
+            <div class="col-md-4 text-center">
+              <nb-icon icon="settings-2-outline" style="font-size: 5rem;"></nb-icon>
+            </div>
+            <div class="col-md-8">
+              <span class="h6">Paramètre du boutique</span>
+              <p>afficher et mettre à jour les paramètres de votre boutique</p>
+            </div>
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>
+  <!-- //divers -->
+</div>

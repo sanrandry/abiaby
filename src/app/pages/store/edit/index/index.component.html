@@ -1,0 +1,81 @@
+<form [formGroup]="companyForm" (ngSubmit)="submitCompanyForm()">
+  <div class="col-md-12">
+    <nb-card>
+      <nb-card-header>Informations générales</nb-card-header>
+      <nb-card-body>
+        <div class="row">
+          <!-- Nom de l'entreprise -->
+          <div class="form-group col-md-6">
+            <label for="name" class="label">Nom de l'entreprise</label>
+            <input formControlName="name" type="text" nbInput fullWidth id="name" placeholder="Nom de l'entreprise">
+            <p *ngIf="companyForm.controls.name.invalid && (companyForm.controls.name.dirty || companyForm.controls.name.touched)"
+              class="text-danger">le nom est obligatoire</p>
+          </div>
+          <!-- //Nom de l'entreprise -->
+          <!-- Localisation de l'entreprise -->
+          <div class="form-group  col-md-6">
+            <label for="address" class="label">Localisation de l'entreprise</label>
+            <input formControlName="address" required type="text" nbInput fullWidth id="address"
+              placeholder="Localisation de l'entreprise">
+            <p *ngIf="companyForm.controls.address.invalid && (companyForm.controls.address.dirty || companyForm.controls.address.touched)"
+              class="text-danger">la localisation de l'entreprise est obligatoire</p>
+          </div>
+          <!-- //Localisation de l'entreprise -->
+          <!-- Addresse E-mail -->
+          <div class="form-group col-md-6">
+            <label for="email" class="label">Addresse E-mail</label>
+            <input formControlName="email" required type="email" email nbInput fullWidth id="email" placeholder="Addresse E-mail">
+            <div *ngIf="companyForm.controls.email.invalid">
+              <p *ngIf="companyForm.controls.email.errors.required && (companyForm.controls.email.dirty || companyForm.controls.email.touched)"
+                class="text-danger">L'addresse E-mail est obligatoire</p>
+              <p *ngIf="companyForm.controls.email.errors.email && (companyForm.controls.email.dirty || companyForm.controls.email.touched)"
+                class="text-danger">L'addresse E-mail est invalide</p>
+            </div>
+          </div>
+          <!-- //Addresse E-mail -->
+          <!-- Téléphone -->
+          <div class="form-group col-md-6">
+            <label for="phoneNumber" class="label">Téléphone</label>
+            <input formControlName="phoneNumber" required type="text" nbInput fullWidth id="phoneNumber" placeholder="Téléphone">
+            <p *ngIf="companyForm.controls.phoneNumber.invalid && (companyForm.controls.phoneNumber.dirty || companyForm.controls.phoneNumber.touched)"
+              class="text-danger">Le téléphone E-mail est obligatoire</p>
+          </div>
+          <!-- //Téléphone -->
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+
+  <!-- logo card -->
+  <div class="col-md-12">
+    <nb-card>
+      <nb-card-header>
+        Logo
+        <button type="button" class="float-right" (click)="logo.click()" nbButton>Upload image</button>
+        <input hidden (change)="getlog($event)" type="file" formControlName="logo" #logo id="logo">
+      </nb-card-header>
+      <nb-card-body>
+         <div class="row justify-content-center">
+           <div class="co-md-3">
+             <img style="max-height: 150px;" class="img-fluid" [src]="logoUrl ? logoUrl : '/assets/images/Logo.png'" alt="">
+           </div>
+         </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <!-- logo card -->
+
+  <!-- button card -->
+  <div class="col-md-12">
+    <nb-card>
+      <nb-card-body>
+        <div class="float-right">
+          <button type="button" status="basic" class="mr-3" nbButton
+            [routerLink]="['/' + sellerAccountId + '/store/' + companyId + '/configuration']">Annuler</button>
+          <button [disabled]="companyForm.invalid || !companyForm.dirty" nbButton type="submit">Sauvegarder</button>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <!-- //button card -->
+</form>

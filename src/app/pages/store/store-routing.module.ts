@@ -22,8 +22,16 @@ const routes: Routes = [
         component: DashboardComponent,
       },
       {
+        path: 'edit',
+        loadChildren: () => import('./edit/edit.module').then(m => m.EditModule),
+      },
+      {
         path: 'product',
         loadChildren: () => import('./product/product.module').then( m => m.ProductModule),
+      },
+      {
+        path: 'configuration',
+        loadChildren: () => import('./configuration/configuration.module').then( m => m.ConfigurationModule),
       },
     ],
   },

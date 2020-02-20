@@ -17,16 +17,16 @@
               <div class="col-md-10">
                 <form [formGroup]="companyForm" (ngSubmit)="createCompany()">
                   <div class="form-group">
+                    <label for="name" class="label">Nom de l'entreprise</label>
+                    <input formControlName="name" type="text" nbInput fullWidth id="name" placeholder="Nom de l'entreprise">
+                    <p *ngIf="companyForm.controls.name.invalid && (companyForm.controls.name.dirty || companyForm.controls.name.touched)"
+                      class="text-danger">le nom est obligatoire</p>
+                  </div>
+                  <div class="form-group">
                     <label for="address" class="label">Localisation de l'entreprise</label>
                     <input formControlName="address" required type="text" nbInput fullWidth id="address" placeholder="Localisation de l'entreprise">
                     <p *ngIf="companyForm.controls.address.invalid && (companyForm.controls.address.dirty || companyForm.controls.address.touched)"
                       class="text-danger">la localisation de l'entreprise est obligatoire</p>
-                  </div>
-                  <div class="form-group">
-                    <label for="name" class="label">Nom de l'entreprise</label>
-                    <input formControlName="name"  type="text" nbInput fullWidth id="name" placeholder="Nom de l'entreprise">
-                    <p *ngIf="companyForm.controls.name.invalid && (companyForm.controls.name.dirty || companyForm.controls.name.touched)"
-                      class="text-danger">le nom est obligatoire</p>
                   </div>
                   <div class="form-group">
                     <label for="email" class="label">Addresse E-mail</label>
