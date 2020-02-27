@@ -8,6 +8,7 @@ import { DashboardComponent } from './dashboard.component';
   imports: [
     NbCardModule,
     ThemeModule,
+    NbCardModule,
   ],
   declarations: [
     DashboardComponent,

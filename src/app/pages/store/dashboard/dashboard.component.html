@@ -1,3 +1,44 @@
-<p>
-  dashboard works!
-</p>
+<div class="row">
+  <div class="col-md-8">
+    <nb-card size="medium">
+      <nb-card-header>Tableau de bord</nb-card-header>
+      <nb-card-body>
+         <chart-line></chart-line>
+      </nb-card-body>
+    </nb-card>
+    <nb-card>
+      <nb-card-header>Produits et ventes</nb-card-header>
+      <nb-card-body>
+         <review-tab></review-tab>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-md-4">
+    <nb-card>
+      <nb-card-header>Aprecu de l´activité</nb-card-header>
+      <nb-card-body>
+        <nb-list>
+          <nb-list-item >
+            Visiteurs en ligne: <span class="badge subtitle-2">12</span>
+          </nb-list-item>
+          <nb-list-item >
+            Paniers actifs: <span class="badge subtitle-2">2</span>
+          </nb-list-item>
+        </nb-list>
+      </nb-card-body>
+    </nb-card>
+    <nb-card>
+      <nb-card-header>Actuellement en attente</nb-card-header>
+      <nb-card-body>
+        <nb-list>
+          <nb-list-item>
+            Commandes: <span class="badge subtitle-2">5</span>
+          </nb-list-item>
+          <nb-list-item>
+            Produits en rupture de stock: <span class="badge subtitle-2">2</span>
+          </nb-list-item>
+        </nb-list>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

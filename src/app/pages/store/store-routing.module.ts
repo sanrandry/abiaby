@@ -19,7 +19,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: DashboardComponent,
+        loadChildren: () => import('./dashboard/dashoboard.module').then(m => m.DashoboardModule),
       },
       {
         path: 'edit',
