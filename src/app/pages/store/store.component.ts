@@ -53,10 +53,6 @@ export class StoreComponent implements OnInit {
             link: `/${this.authenticationService.getUserId()}/store/${this.storeId}/product`,
           },
           {
-            title: 'Catégories',
-            link: '',
-          },
-          {
             title: 'Commandes',
             link: '',
           },
