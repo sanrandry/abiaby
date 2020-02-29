@@ -1,0 +1,11 @@
+<td *ngIf="!orderItem; else elseCase" class="text-center" colspan="4">loading...</td>
+<ng-template #elseCase>
+  <td>
+    {{!orderItem.order ? 'the order is canceled' : orderItem.order.date|date}}
+  </td>
+  <td>{{(!orderItem.order || !orderItem.order.account) ? 'this account was deleted' : orderItem.order.account.name}}</td>
+  <td class="text-primary">
+    {{!orderItem.order ? 'the order is canceled' : translateTmpStatus(orderItem.order.status)}}
+  </td>
+  <td>{{calculateTotal()}} Ariary</td>
+</ng-template>

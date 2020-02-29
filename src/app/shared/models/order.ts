@@ -1,6 +1,8 @@
 export interface Order {
-    quantity: number;
+    date: Date;
+    shipedDate?: Date;
+    shipTo?: string;
+    status?: string;
     id?: string;
-    productId?: string;
-    cartId?: string;
+    accountId?: string;
 }

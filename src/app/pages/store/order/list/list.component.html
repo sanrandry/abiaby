@@ -1,0 +1,38 @@
+<div class="col-md-12 mb-3">
+  <div class="row">
+    <div class="col-md">
+      <h5>Commandes</h5>
+    </div>
+    <div class="col-md">
+      
+    </div>
+  </div>
+</div>
+<div class="col-md-12">
+  <nb-card>
+    <nb-card-header>Toutes les commandes</nb-card-header>
+    <nb-card-body>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Client</th>
+            <th scope="col">État</th>
+            <th scope="col">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of orderList"
+              order-item-line
+              [orderItemId]= item.id
+              style="cursor: pointer;">
+          </tr>
+
+          <tr *ngIf="!orderList.length">
+            <td colspan="4" class="text-center">Aucune commandes</td>
+          </tr>
+        </tbody>
+      </table>
+    </nb-card-body>
+  </nb-card>
+</div>
