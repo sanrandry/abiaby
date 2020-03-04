@@ -25,7 +25,8 @@
           <tr *ngFor="let item of orderList"
               order-item-line
               [orderItemId]= item.id
-              style="cursor: pointer;">
+              style="cursor: pointer;"
+              [routerLink]="[router.url + '/' + item.id]">
           </tr>
 
           <tr *ngIf="!orderList.length">

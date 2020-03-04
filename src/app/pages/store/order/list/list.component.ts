@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { OrderService } from '../../../../shared/services/order.service';
 import { OrderItemService } from '../../../../shared/services/order-item.service';
 import { map } from 'rxjs/operators';
@@ -12,7 +12,9 @@ import { map } from 'rxjs/operators';
 export class ListComponent implements OnInit {
   public CompanyId;
   public orderList: any = [];
-  constructor(private route: ActivatedRoute, private orderItemService: OrderItemService) { }
+  constructor(private route: ActivatedRoute,
+              private orderItemService: OrderItemService,
+              public router: Router) { }
 
   ngOnInit() {
     this.getCompanyIdFromUrl();
