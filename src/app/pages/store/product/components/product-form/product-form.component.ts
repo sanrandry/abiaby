@@ -4,6 +4,7 @@ import { CompanyService } from '../../../../../shared/services/company.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../../../../../shared/services/product.service';
 import { Product } from '../../../../../shared/models/product';
+import { CategoryService } from '../../../../../shared/services/category.service';
 
 @Component({
   selector: 'product-form',
@@ -17,6 +18,7 @@ export class ProductFormComponent implements OnInit {
   public sellerAccountId;
   public companyId;
   public productForm;
+  public categoryList
 
   public coverImageUrl;
 
@@ -24,7 +26,8 @@ export class ProductFormComponent implements OnInit {
     private companyService: CompanyService,
     private route: ActivatedRoute,
     private router: Router,
-    private productService: ProductService) { }
+    private productService: ProductService,
+    private categoryService: CategoryService) { }
 
   ngOnInit() {
     // get seller  id
@@ -42,7 +45,10 @@ export class ProductFormComponent implements OnInit {
    * @memberof ProductFormComponent
    */
   initializeForm () {
-    // unchage data
+    // get category list
+    this.getCategoryList();
+    // form control property
+      // unchage data
       const form: any = {
         name: ['', Validators.required],
         description: ['', Validators.required],
@@ -74,9 +80,23 @@ export class ProductFormComponent implements OnInit {
         this.productForm.controls.price.setValue(currentProduct.price);
         this.productForm.controls.SKU.setValue(currentProduct.SKU);
         this.productForm.controls.inventory.setValue(currentProduct.inventory);
+        this.productForm.controls.category.setValue(currentProduct.categoryId);
         this.coverImageUrl = currentProduct.productImages[0].blob;
       });
     }
+  }
+
+  /**
+   * getCategoryList()
+   * get the category list using the category service and put it in
+   * the catogoryList peroperty
+   */
+  private getCategoryList() {
+    this.categoryService.fetchAll().subscribe((categories) => {
+      this.categoryList = categories;
+    }, (error) => {
+      console.log('an error was occured when fetching the category list');
+    })
   }
 
   /**
@@ -129,6 +149,10 @@ export class ProductFormComponent implements OnInit {
         SKU: this.productForm.value.SKU,
         inventory: this.productForm.value.inventory,
       };
+      // verify if we have a selected category
+      if (this.productForm.value.category) {
+        data.categoryId = this.productForm.value.category;
+      }
       this.companyService.newProduct(this.route.parent.parent.snapshot.paramMap.get('companyId'), data).subscribe((result: any) => {
         // upload the product image
         this.productService.newImage(result.id, {
@@ -156,6 +180,10 @@ export class ProductFormComponent implements OnInit {
         SKU: this.productForm.value.SKU,
         inventory: this.productForm.value.inventory,
       };
+      // verify if we have a selected category
+      if (this.productForm.value.category) {
+        data.categoryId = this.productForm.value.category;
+      }
       this.companyService.updateProduct(this.route.parent.parent.snapshot.paramMap.get('companyId'),
                                       this.route.snapshot.paramMap.get('productId'),
                                       data).subscribe((result: any) => {

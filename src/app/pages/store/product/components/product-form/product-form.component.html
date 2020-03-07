@@ -84,13 +84,11 @@
             <div class="form-group">
               <label for="phoneNumber" class="label">Categorie</label>
               <div class="row">
-                <nb-select class="col-md" placeholder="Catetorie">
-                  <nb-option value="">Option empty</nb-option>
-                  <nb-option value="0">Categorie 0</nb-option>
-                  <nb-option value="1">Categorie 1</nb-option>
-                  <nb-option value="2">Categorie 2</nb-option>
-                  <nb-option value="3">Categorie 3</nb-option>
-                  <nb-option value="4">Categorie 4</nb-option>
+                <nb-select formControlName="category" class="col-md" placeholder="Catetorie">
+                  <nb-option value="">Acunne categorie</nb-option>
+                  <nb-option *ngFor="let item of categoryList" [value]="item.id">
+                    {{item.name}}
+                  </nb-option>
                 </nb-select>
                 <!-- <p *ngIf="productForm.controls.phoneNumber.invalid && (productForm.controls.phoneNumber.dirty || productForm.controls.phoneNumber.touched)"
                                                           class="text-danger">Le téléphone E-mail est obligatoire</p> -->

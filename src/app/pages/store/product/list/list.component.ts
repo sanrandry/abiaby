@@ -21,6 +21,7 @@ export class ListComponent implements OnInit {
 
   public getProductList() {
     const filter = {
+      order: 'id DESC',
       include: 'productImages',
     };
     this.companyService.productList(this.route.parent.parent.snapshot.paramMap.get('companyId'), filter).subscribe((data: any) => {
